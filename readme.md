@@ -73,15 +73,15 @@ A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB
 Start with /api/ as the base URL. There are 3 parent endpoints: /videos, /products, and /comments.
 
 - video
-  - [GET api/videos ](#GET-/videos)
-  - [GET api/videos/:videoID](#GET-/videos/:videoID)
-  - [POST /videos](#POST-/videos)
-  - [GET /videos/:videoID/products](#GET-/videos/:videoID/products)
-  - [GET /videos/:videoID/comments](#GET-/videos/:videoID/comments)
-- /products
-  - [POST /products](#POST-/products)
-- /comments
-  - [POST /comments](#POST-/comments)
+  - [GET /api/videos](#get-apivideos)
+  - [GET /api/videos/:videoID](#get-apivideosvideoID)
+  - [POST /api/videos](#post-apivideos)
+  - [GET /api/videos/:videoID/products](#get-apivideosvideoIDproducts)
+  - [GET /api/videos/:videoID/comments](#get-apivideosvideoIDcomments)
+- products
+  - [POST /api/products](#post-apiproducts)
+- comments
+  - [POST /api/comments](#post-apicomments)
 
 ## **API Request and Response**
 
@@ -200,7 +200,7 @@ Returns all products of the specified videoID.
   - **Code:** 500  
     **Content:** `{ error : error.message }`
 
-## GET api//videos/:videoID/comments
+## GET /api/videos/:videoID/comments
 
 Returns all comments of the specified videoID.
 
@@ -235,7 +235,7 @@ Returns all comments of the specified videoID.
   - **Code:** 500  
     **Content:** `{ error : error.message }`
 
-## POST api//products
+## POST /api/products
 
 Creates a new Product and returns the new object.
 
@@ -273,7 +273,7 @@ Creates a new Product and returns the new object.
   - **Code:** 500
     **Content:** `{ error : error.message }`
 
-## POST api/comments
+## POST /api/comments
 
 Creates a new Comment and returns the new object.
 
@@ -293,23 +293,35 @@ Creates a new Comment and returns the new object.
   Content-Type: application/json
 - **Success Response:**
 - **Code:** 201
-- **Content:** `{ status: "Success", comment: newComment  }`
+- **Content:**
+
+```
+{
+  amount: Number,
+  comments: [
+    {<comment_object>},
+    {<comment_object>},
+    {<comment_object>}
+  ]
+}
+```
+
 - **Error Response:**
-  - **Code:** 400
-    - **Content:**
-    ```
-      {
-        status: "Fail",
-        error : "Missing the following fields: *field(s)",
-        emptyFields,
-      }
-    ```
-    OR
-  - **Code:** 404
-    **Content:** `{ status: "Fail", error : "Unable to add the product because the video doesn't exist" }`  
-    OR
-  - **Code:** 500
-    **Content:** `{ status: "Fail", error : error.message }`
+- **Code:** 400
+  - **Content:**
+  ```
+    {
+      status: "Fail",
+      error : "Missing the following fields: *field(s)",
+      emptyFields,
+    }
+  ```
+  OR
+- **Code:** 404
+  **Content:** `{ status: "Fail", error : "Unable to add the product because the video doesn't exist" }`
+  OR
+- **Code:** 500
+  **Content:** `{ status: "Fail", error : error.message }`
 
 ---
 
@@ -318,16 +330,22 @@ Creates a new Comment and returns the new object.
 Pre-requisites: Node.js, npm, MongoDB
 
 1. Clone the Repository
-2. Install Dependencies
+2. Open terminal to that repo then Install Dependencies
 
-   ```
-   npm init
-   ```
+````
 
-   ```
-   npm i express mongoose dotenv nodemon
-   ```
+npm init -y
+
+```
+
+```
+
+npm install
+
+```
 
 3. Rename **.env.example** file into **.env**
 4. In **.env** file, change the value of **MONGO_URI** to your MongoDB URI, and **PORT** to your desired port number
 5. Run the server using `npm run dev`
+```
+````
