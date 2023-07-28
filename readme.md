@@ -332,7 +332,7 @@ Pre-requisites: Node.js, npm, MongoDB
 1. Clone the Repository
 2. Open terminal to that repo then Install Dependencies
 
-````
+```
 
 npm init -y
 
@@ -347,5 +347,3 @@ npm install
 3. Rename **.env.example** file into **.env**
 4. In **.env** file, change the value of **MONGO_URI** to your MongoDB URI, and **PORT** to your desired port number
 5. Run the server using `npm run dev`
-```
-````
