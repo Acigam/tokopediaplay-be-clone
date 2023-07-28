@@ -72,7 +72,7 @@ A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB
 
 Start with /api/ as the base URL. There are 3 parent endpoints: /videos, /products, and /comments.
 
-- video
+- videos
   - [GET /api/videos](#get-apivideos)
   - [GET /api/videos/:videoID](#get-apivideosvideoID)
   - [POST /api/videos](#post-apivideos)
@@ -89,13 +89,13 @@ Start with /api/ as the base URL. There are 3 parent endpoints: /videos, /produc
 
 Returns all videos in the system.
 
-- **URL Params**
+- **URL Params**  
   None
-- **Data Params**
+- **Data Params**  
   None
 - **Query Params**:
   - **query-search** : String : Search query to filter videos by title
-- **Headers**
+- **Headers**  
   Content-Type: application/json
 - **Success Response:**
 - **Code:** 200
@@ -161,7 +161,13 @@ Creates a new Video and returns the new object.
   **Content:** `{ <user_object> }`
 - **Error Response:**
   - **Code:** 400  
-    **Content:** `{ error : "Invalid VideoID parameter" }`  
+    **Content:**
+    ```
+      {
+        error : "Missing the following fields: *field(s)",
+        emptyFields,
+      }
+    ```
     OR
   - **Code:** 500  
     **Content:** `{ error : error.message }`
@@ -170,11 +176,11 @@ Creates a new Video and returns the new object.
 
 Returns all products of the specified videoID.
 
-- **URL Params**
+- **URL Params**  
   _Required:_ `videoID=[string]`
-- **Data Params**
+- **Data Params**  
   None
-- **Headers**
+- **Headers**  
   Content-Type: application/json
 - **Success Response:**
 - **Code:** 200
@@ -204,11 +210,11 @@ Returns all products of the specified videoID.
 
 Returns all comments of the specified videoID.
 
-- **URL Params**
+- **URL Params**  
   _Required:_ `videoID=[string]`
-- **Data Params**
+- **Data Params**  
   None
-- **Headers**
+- **Headers**  
   Content-Type: application/json
 - **Success Response:**
 - **Code:** 200
@@ -239,7 +245,7 @@ Returns all comments of the specified videoID.
 
 Creates a new Product and returns the new object.
 
-- **URL Params**
+- **URL Params**  
   None
 - **Data Params**
 
@@ -252,14 +258,14 @@ Creates a new Product and returns the new object.
   }
 ```
 
-- **Headers**
+- **Headers**  
   Content-Type: application/json
 - **Success Response:**
 - **Code:** 201
 - **Content:** `{ <product_object> }`
 - **Error Response:**
-  - **Code:** 400
-  - **Content:**
+  - **Code:** 400  
+    **Content:**
     ```
       {
         error : "Missing the following fields: *field(s)",
@@ -267,17 +273,17 @@ Creates a new Product and returns the new object.
       }
     ```
     OR
-  - **Code:** 404
-    **Content:** `{ error : "Unable to add the product because the video doesn't exist" }`
+  - **Code:** 404  
+    **Content:** `{ error : "Unable to add the product because the video doesn't exist" }`  
     OR
-  - **Code:** 500
+  - **Code:** 500  
     **Content:** `{ error : error.message }`
 
 ## POST /api/comments
 
 Creates a new Comment and returns the new object.
 
-- **URL Params**
+- **URL Params**  
   None
 - **Data Params**
 
@@ -289,7 +295,7 @@ Creates a new Comment and returns the new object.
   }
 ```
 
-- **Headers**
+- **Headers**  
   Content-Type: application/json
 - **Success Response:**
 - **Code:** 201
@@ -317,13 +323,11 @@ Creates a new Comment and returns the new object.
     }
   ```
   OR
-- **Code:** 404
-  **Content:** `{ status: "Fail", error : "Unable to add the product because the video doesn't exist" }`
+- **Code:** 404  
+  **Content:** `{ status: "Fail", error : "Unable to add the product because the video doesn't exist" }`  
   OR
-- **Code:** 500
+- **Code:** 500  
   **Content:** `{ status: "Fail", error : error.message }`
-
----
 
 ## How to run in local
 
@@ -333,15 +337,11 @@ Pre-requisites: Node.js, npm, MongoDB
 2. Open terminal to that repo then Install Dependencies
 
 ```
-
 npm init -y
-
 ```
 
 ```
-
 npm install
-
 ```
 
 3. Rename **.env.example** file into **.env**
