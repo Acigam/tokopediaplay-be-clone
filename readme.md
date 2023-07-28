@@ -70,9 +70,22 @@ A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB
 
 ## **API Structure**
 
+Start with /api/ as the base URL. There are 3 parent endpoints: /videos, /products, and /comments.
+
+- video
+  - [GET api/videos ](#GET-/videos)
+  - [GET api/videos/:videoID](#GET-/videos/:videoID)
+  - [POST /videos](#POST-/videos)
+  - [GET /videos/:videoID/products](#GET-/videos/:videoID/products)
+  - [GET /videos/:videoID/comments](#GET-/videos/:videoID/comments)
+- /products
+  - [POST /products](#POST-/products)
+- /comments
+  - [POST /comments](#POST-/comments)
+
 ## **API Request and Response**
 
-## GET /videos
+## GET /api/videos
 
 Returns all videos in the system.
 
@@ -102,7 +115,7 @@ Returns all videos in the system.
   - **Code:** 500  
     **Content:** `{ error : error.message }`
 
-## GET /videos/:videoID
+## GET /api/videos/:videoID
 
 Returns the specified video.
 
@@ -125,7 +138,7 @@ Returns the specified video.
   - **Code:** 500  
     **Content:** `{ error : error.message }`
 
-## **POST /videos**
+## **POST /api/videos**
 
 Creates a new Video and returns the new object.
 
@@ -153,7 +166,7 @@ Creates a new Video and returns the new object.
   - **Code:** 500  
     **Content:** `{ error : error.message }`
 
-## GET /videos/:videoID/products
+## GET /api/videos/:videoID/products
 
 Returns all products of the specified videoID.
 
@@ -187,7 +200,7 @@ Returns all products of the specified videoID.
   - **Code:** 500  
     **Content:** `{ error : error.message }`
 
-## GET /videos/:videoID/comments
+## GET api//videos/:videoID/comments
 
 Returns all comments of the specified videoID.
 
@@ -222,7 +235,7 @@ Returns all comments of the specified videoID.
   - **Code:** 500  
     **Content:** `{ error : error.message }`
 
-## POST /products
+## POST api//products
 
 Creates a new Product and returns the new object.
 
@@ -260,7 +273,7 @@ Creates a new Product and returns the new object.
   - **Code:** 500
     **Content:** `{ error : error.message }`
 
-## POST /comments
+## POST api/comments
 
 Creates a new Comment and returns the new object.
 
@@ -302,14 +315,19 @@ Creates a new Comment and returns the new object.
 
 ## How to run in local
 
-```
+Pre-requisites: Node.js, npm, MongoDB
 
-```
+1. Clone the Repository
+2. Install Dependencies
 
-```
+   ```
+   npm init
+   ```
 
-```
+   ```
+   npm i express mongoose dotenv nodemon
+   ```
 
-```
-
-```
+3. Rename **.env.example** file into **.env**
+4. In **.env** file, change the value of **MONGO_URI** to your MongoDB URI, and **PORT** to your desired port number
+5. Run the server using `npm run dev`
