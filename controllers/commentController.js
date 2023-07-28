@@ -6,16 +6,19 @@ const getCommentsOfVideo = async (req, res) => {
   const { videoID } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(videoID)) {
-    return res.status(400).json({ message: "Invalid VideoID parameter" });
+    return res.status(400).json({ error: "Invalid VideoID parameter" });
   }
 
   try {
+    if (!(await Video.exists({ _id: videoID }))) {
+      return res.status(404).json({ message: "Video doesn't exist" });
+    }
     const comments = await Comment.find({ videoID }, { videoID: 0, _id: 0, __v: 0 }).sort({
       createdAt: -1,
     });
     res.status(200).json({ amount: comments.length, comments });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -23,7 +26,7 @@ const createComment = async (req, res) => {
   const { videoID, username, comment } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(videoID)) {
-    return res.status(400).json({ status: "Fail", message: "Invalid videoID parameter" });
+    return res.status(400).json({ status: "Fail", error: "Invalid videoID parameter" });
   }
 
   let emptyFields = [];
@@ -37,7 +40,7 @@ const createComment = async (req, res) => {
   if (emptyFields.length > 0) {
     return res.status(400).json({
       status: "Fail",
-      message: `Missing the following fields: ${emptyFields.join(", ")}`,
+      error: `Missing the following fields: ${emptyFields.join(", ")}`,
       emptyFields,
     });
   }
@@ -46,7 +49,7 @@ const createComment = async (req, res) => {
     if (!(await Video.exists({ _id: videoID }))) {
       return res.status(404).json({
         status: "Fail",
-        message: "Unable to add the comment because the video doesn't exist",
+        error: "Unable to add the comment because the video doesn't exist",
       });
     }
 
@@ -55,9 +58,9 @@ const createComment = async (req, res) => {
       username,
       comment,
     });
-    res.status(201).json({ status: "Success" });
+    res.status(201).json({ status: "Success", comment: newComment });
   } catch (error) {
-    res.status(500).json({ status: "Fail", message: error.message });
+    res.status(500).json({ status: "Fail", error: error.message });
   }
 };
 

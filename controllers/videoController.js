@@ -15,7 +15,7 @@ const getVideos = async (req, res) => {
     const videos = await Video.find({}, { products: 0, __v: 0 });
     res.status(200).json({ videos });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -44,7 +44,7 @@ const createVideo = async (req, res) => {
     const video = await Video.create({ title, urlThumbnail, urlVideo });
     res.status(201).json({ video });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -52,7 +52,7 @@ const getVideo = async (req, res) => {
   const { videoID } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(videoID)) {
-    return res.status(404).json({ message: "Invalid VideoID parameter" });
+    return res.status(400).json({ error: "Invalid VideoID parameter" });
   }
 
   try {
@@ -66,7 +66,7 @@ const getVideo = async (req, res) => {
 
     res.status(200).json(video);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
