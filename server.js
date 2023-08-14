@@ -18,7 +18,7 @@ const routes = require("./routes/routes");
 const app = express();
 
 const corsOptions = {
-  origin: "https://tkpdplay-fe.onrender.com/",
+  origin: "https://tkpdplay-fe.onrender.com",
   credentials: true,
   OptionSuccessStatus: 200,
 };
@@ -40,7 +40,7 @@ app.use(express.static("public"));
 const server = require("http").Server(app);
 const io = socketio(server, {
   cors: {
-    origin: "https://tkpdplay-fe.onrender.com/",
+    origin: "https://tkpdplay-fe.onrender.com",
   },
 });
 
