@@ -5,7 +5,7 @@ A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB
 ## **Table of Contents**
 
 - [Database Schema](#database-schema)
-- [API Strukture](#api-structure)
+- [API Structure](#api-structure)
 - [API request and response](#api-request-and-response)
 - [How to run in local](#how-to-run-in-local)
 
@@ -345,5 +345,5 @@ npm install
 ```
 
 3. Rename **.env.example** file into **.env**
-4. In **.env** file, change the value of **MONGO_URI** to your MongoDB URI, and **PORT** to your desired port number
+4. In **.env** file, change the value of **ORIGIN**, **MONGO_URI** to your MongoDB URI, and **PORT** to your desired port number
 5. Run the server using `npm run dev`

@@ -61,7 +61,7 @@ const getVideo = async (req, res) => {
       __v: 0,
     });
     if (!video) {
-      return res.status(404).json({ message: "Video doesn't exist" });
+      return res.status(404).json({ error: "Video doesn't exist" });
     }
 
     res.status(200).json(video);

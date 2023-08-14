@@ -11,9 +11,9 @@ const getCommentsOfVideo = async (req, res) => {
 
   try {
     if (!(await Video.exists({ _id: videoID }))) {
-      return res.status(404).json({ message: "Video doesn't exist" });
+      return res.status(404).json({ error: "Video doesn't exist" });
     }
-    const comments = await Comment.find({ videoID }, { videoID: 0, _id: 0, __v: 0 }).sort({
+    const comments = await Comment.find({ videoID }, { videoID: 0, __v: 0 }).sort({
       createdAt: -1,
     });
     res.status(200).json({ amount: comments.length, comments });
@@ -32,10 +32,10 @@ const createComment = async (req, res) => {
   let emptyFields = [];
 
   if (!username) {
-    emptyFields.push("linkProduct");
+    emptyFields.push("username");
   }
   if (!comment) {
-    emptyFields.push("title");
+    emptyFields.push("comment");
   }
   if (emptyFields.length > 0) {
     return res.status(400).json({
