@@ -303,12 +303,8 @@ Creates a new Comment and returns the new object.
 
 ```
 {
-  amount: Number,
-  comments: [
-    {<comment_object>},
-    {<comment_object>},
-    {<comment_object>}
-  ]
+  status: "Success",
+  comment: {<comment_object>}
 }
 ```
 

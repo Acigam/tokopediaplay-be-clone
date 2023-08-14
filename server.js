@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 const socketio = require("socket.io");
 const cors = require("cors");
 
-const path = require("path");
-
 const MONGO_URI = process.env.MONGO_URI;
 const PORT = process.env.PORT;
 
@@ -27,8 +25,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -38,10 +34,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api", routes);
-
-app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});
 
 app.use(express.static("public"));
 
