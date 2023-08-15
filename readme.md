@@ -2,6 +2,8 @@
 
 A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB. This is a project of Fullstack Track in Generasi Gigih 3.0.
 
+Link to the backend repository: [tokopediaplay-fe-clone](https://github.com/Acigam/tokopediaplay-fe-clone)
+
 ## **Table of Contents**
 
 - [Database Schema](#database-schema)
@@ -12,9 +14,14 @@ A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB
 
 ## **Database Schema**
 
-- Consists of 3 collections: Video, Product, and Comment.
-- Embedding products in the Video to store list of productID, the product(s) of the video.
-- Choosing to only referencing videoID in the Comment document and not embedding it in the Video.
+Consists of 3 collections: Video, Product, and Comment.
+
+**Relationship**
+
+- Embedding `products` in the `Video` to store list of `productID`, the product(s) of the video.
+- Only referencing `videoID` in the `Comment` document and not embedding it in the `Video`.
+
+**Schema**
 
 1. Video
    - \_id: ObjectID : Unique ID of the video
@@ -75,10 +82,10 @@ Start with /api/ as the base URL. There are 3 parent endpoints: /videos, /produc
 
 - videos
   - [GET /api/videos](#get-apivideos)
-  - [GET /api/videos/:videoID](#get-apivideosvideoID)
+  - [GET /api/videos/:videoID](#get-apivideosvideoid)
   - [POST /api/videos](#post-apivideos)
-  - [GET /api/videos/:videoID/products](#get-apivideosvideoIDproducts)
-  - [GET /api/videos/:videoID/comments](#get-apivideosvideoIDcomments)
+  - [GET /api/videos/:videoID/products](#get-apivideosvideoidproducts)
+  - [GET /api/videos/:videoID/comments](#get-apivideosvideoidcomments)
 - products
   - [POST /api/products](#post-apiproducts)
 - comments
@@ -328,7 +335,7 @@ Creates a new Comment and returns the new object.
 
 ## How to run in local
 
-Pre-requisites: Node.js, npm, MongoDB
+**Pre-requisites**: Node.js, npm, MongoDB
 
 1. Clone the Repository
 2. Open terminal to that repo then Install Dependencies
