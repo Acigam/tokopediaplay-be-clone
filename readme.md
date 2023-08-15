@@ -349,7 +349,7 @@ npm install
 5. **(OPTIONAL)** You can **seed the database** with sample data, it will delete all existing data in the database and replace it with the sample data
 
 ```
-npm seed:local
+npm run seed:local
 ```
 
 7. Run the server using the following command
