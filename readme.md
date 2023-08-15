@@ -341,10 +341,6 @@ Creates a new Comment and returns the new object.
 2. Open terminal to that repo then Install Dependencies
 
 ```
-npm init -y
-```
-
-```
 npm install
 ```
 
