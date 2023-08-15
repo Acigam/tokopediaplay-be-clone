@@ -1,6 +1,6 @@
-# Tokopedia Play Clone (API / Backend Only)
+# Tokopedia Play Clone (API / Backend)
 
-A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB. This is a mid-term project of Fullstack Track in Generasi Gigih 3.0.
+A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB. This is a project of Fullstack Track in Generasi Gigih 3.0.
 
 ## **Table of Contents**
 
@@ -8,6 +8,7 @@ A clone of Tokopedia Play (Backend) built using Node.js, Express.js, and MongoDB
 - [API Structure](#api-structure)
 - [API request and response](#api-request-and-response)
 - [How to run in local](#how-to-run-in-local)
+- [Bonus Features](#bonus-features-implemented)
 
 ## **Database Schema**
 
@@ -341,5 +342,20 @@ npm install
 ```
 
 3. Rename **.env.example** file into **.env**
-4. In **.env** file, change the value of **ORIGIN**, **MONGO_URI** to your MongoDB URI, and **PORT** to your desired port number
-5. Run the server using `npm run dev`
+4. In **.env** file, change the value of **ORIGIN** to your frontend URL, **MONGO_URI** to your MongoDB URI, and **PORT** to your desired port number
+5. **(OPTIONAL)** You can **seed the database** with sample data, it will delete all existing data in the database and replace it with the sample data
+
+```
+npm seed:local
+```
+
+7. Run the server using the following command
+
+```
+npm run dev
+```
+
+## **Bonus Features Implemented**
+
+- Websocket for real-time comments
+- Search feature for videos
